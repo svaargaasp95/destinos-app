@@ -1,0 +1,45 @@
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #2d3748;
+}
+
+input {
+  padding: 0.6rem 0.9rem;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4299e1;
+}
+
+.error {
+  color: #e53e3e;
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
+}
+
+button {
+  padding: 0.7rem 1.4rem;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #2b6cb0;
+}

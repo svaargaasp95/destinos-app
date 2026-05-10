@@ -1,0 +1,20 @@
+<div class="lista">
+  <div class="destino-card" *ngFor="let destino of destinos$ | async">
+    <div class="info">
+      <h3>{{ destino.nombre }}</h3>
+      <p>{{ destino.descripcion }}</p>
+    </div>
+    <div class="acciones">
+      <button class="btn-voto favor" (click)="votar(destino.id)">👍</button>
+      <span class="votos" [class.positivo]="destino.votos > 0" [class.negativo]="destino.votos < 0">
+        {{ destino.votos }}
+      </span>
+      <button class="btn-voto contra" (click)="votarNegativo(destino.id)">👎</button>
+      <button class="btn-eliminar" (click)="eliminar(destino.id)">🗑</button>
+    </div>
+  </div>
+
+  <p class="vacio" *ngIf="(destinos$ | async)?.length === 0">
+    No hay destinos aún. ¡Agrega uno!
+  </p>
+</div>

@@ -1,0 +1,27 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+  <div class="campo">
+    <label for="nombre">Nombre del destino</label>
+    <input id="nombre" type="text" formControlName="nombre" placeholder="Ej: Cartagena" />
+
+    <span class="error" *ngIf="nombre?.touched && nombre?.hasError('required')">
+      El nombre es requerido.
+    </span>
+    <span class="error" *ngIf="nombre?.touched && nombre?.hasError('minLengthPersonalizado')">
+      El nombre debe tener al menos {{ nombre?.errors?.['minLengthPersonalizado']?.requerido }} caracteres.
+      (Tienes {{ nombre?.errors?.['minLengthPersonalizado']?.actual }})
+    </span>
+  </div>
+
+  <div class="campo">
+    <label for="descripcion">Descripción</label>
+    <input id="descripcion" type="text" formControlName="descripcion" placeholder="Breve descripción del lugar" />
+
+    <span class="error" *ngIf="descripcion?.touched && descripcion?.hasError('required')">
+      La descripción es requerida.
+    </span>
+  </div>
+
+  <button type="submit">➕ Agregar destino</button>
+
+</form>
