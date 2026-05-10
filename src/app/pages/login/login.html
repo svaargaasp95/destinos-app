@@ -1,0 +1,32 @@
+﻿<div class="login-page">
+  <div class="login-card">
+    <h1>Wishlist de Destinos</h1>
+    <h2>Iniciar sesion</h2>
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <div class="campo">
+        <label for="usuario">Usuario</label>
+        <input id="usuario" type="text" formControlName="usuario" placeholder="admin" />
+        <span class="error" *ngIf="formulario.get('usuario')?.touched && formulario.get('usuario')?.hasError('required')">
+          El usuario es requerido.
+        </span>
+      </div>
+
+      <div class="campo">
+        <label for="password">Contrasena</label>
+        <input id="password" type="password" formControlName="password" placeholder="1234" />
+        <span class="error" *ngIf="formulario.get('password')?.touched && formulario.get('password')?.hasError('required')">
+          La contrasena es requerida.
+        </span>
+      </div>
+
+      <span class="error" *ngIf="error">
+        Usuario o contrasena incorrectos.
+      </span>
+
+      <button type="submit">Entrar</button>
+    </form>
+
+    <p class="hint">Usuario: admin / Contrasena: 1234</p>
+  </div>
+</div>

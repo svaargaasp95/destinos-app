@@ -2,12 +2,13 @@
   <header class="hero">
     <h1>🌎 Wishlist de Destinos</h1>
     <p>Agrega sitios turísticos y vota por tus favoritos</p>
+    <button class="btn-logout" (click)="logout()">Cerrar sesión</button>
   </header>
 
   <main class="contenido">
     <section class="seccion-form">
       <h2>Agregar destino</h2>
-      <app-destino-form (destinoAgregado)="onDestinoAgregado($event)" />
+      <app-destino-form (destinoAgregado)="onDestinoAgregado()" />
     </section>
 
     <section class="seccion-lista">

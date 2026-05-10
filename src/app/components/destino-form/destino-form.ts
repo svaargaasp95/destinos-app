@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Destino } from '../../store/destinos.model';
+import { DestinosApiService } from '../../services/destinos-api.service';
 
 export function minLengthPersonalizado(min: number) {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -21,35 +21,26 @@ export function minLengthPersonalizado(min: number) {
 })
 export class DestinoForm {
 
-  @Output() destinoAgregado = new EventEmitter<Destino>();
+  @Output() destinoAgregado = new EventEmitter<void>();
 
-  formulario: FormGroup;
+  private apiService = inject(DestinosApiService);
+  private fb = inject(FormBuilder);
 
-  constructor(private fb: FormBuilder) {
-    this.formulario = this.fb.group({
-      nombre: [
-        '',
-        [Validators.required, minLengthPersonalizado(3)]
-      ],
-      descripcion: [
-        '',
-        [Validators.required]
-      ]
-    });
-  }
+  formulario: FormGroup = this.fb.group({
+    nombre: ['', [Validators.required, minLengthPersonalizado(3)]],
+    descripcion: ['', [Validators.required]]
+  });
 
   get nombre() { return this.formulario.get('nombre'); }
   get descripcion() { return this.formulario.get('descripcion'); }
 
   onSubmit() {
     if (this.formulario.valid) {
-      const nuevoDestino: Destino = {
-        id: Date.now(),
+      this.apiService.agregarDestino({
         nombre: this.formulario.value.nombre,
-        descripcion: this.formulario.value.descripcion,
-        votos: 0
-      };
-      this.destinoAgregado.emit(nuevoDestino);
+        descripcion: this.formulario.value.descripcion
+      });
+      this.destinoAgregado.emit();
       this.formulario.reset();
     } else {
       this.formulario.markAllAsTouched();

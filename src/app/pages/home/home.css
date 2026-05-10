@@ -1,0 +1,72 @@
+.page {
+  min-height: 100vh;
+  background: #f7fafc;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.hero {
+  background: linear-gradient(135deg, #4299e1, #2b6cb0);
+  color: white;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.2rem;
+}
+
+.hero p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.btn-logout {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.contenido {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.seccion-form,
+.seccion-lista {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+}
+
+h2 {
+  margin: 0 0 1.2rem 0;
+  font-size: 1.2rem;
+  color: #2d3748;
+  border-bottom: 2px solid #ebf4ff;
+  padding-bottom: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .contenido {
+    grid-template-columns: 1fr;
+  }
+}

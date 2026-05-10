@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { DestinoForm } from '../../components/destino-form/destino-form';
 import { DestinoList } from '../../components/destino-list/destino-list';
-import { Destino } from '../../store/destinos.model';
-import { agregarDestino } from '../../store/destinos.actions';
+import { AuthService } from '../../services/auth.service';
+import { DestinosApiService } from '../../services/destinos-api.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +13,21 @@ import { agregarDestino } from '../../store/destinos.actions';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
-  private store = inject(Store);
+export class Home implements OnInit {
+  private auth = inject(AuthService);
+  private router = inject(Router);
+  private apiService = inject(DestinosApiService);
 
-  onDestinoAgregado(destino: Destino) {
-    this.store.dispatch(agregarDestino({ destino }));
+  ngOnInit() {
+    this.apiService.obtenerDestinos().subscribe();
+  }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+
+  onDestinoAgregado() {
+    console.log('Destino agregado via API');
   }
 }
